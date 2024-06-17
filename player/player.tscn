@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://5ufingx2vmlv"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_decup"]
+[ext_resource type="Shader" path="res://shaders/player_health/player_health.gdshader" id="1_hami3"]
+[ext_resource type="Texture2D" uid="uid://cfwtykn8qlssg" path="res://ui/crosshairs/crosshair085.png" id="2_7w4x6"]
+[ext_resource type="Script" path="res://player/cursor.gd" id="3_mwmfc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ihg4o"]
+shader = ExtResource("1_hami3")
+shader_parameter/pct = 1.0
+shader_parameter/bar_size = 0.025
+shader_parameter/over = Color(0.14902, 0.776471, 0.854902, 1)
+shader_parameter/under = Color(0.00392157, 0.341176, 0.607843, 1)
+shader_parameter/bar = Color(1, 1, 1, 1)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jiba8"]
+size = Vector2(128, 96)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_decup")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 25.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-48, -48, 80, 0, -48, 48)
+
+[node name="Polygon" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_ihg4o")
+texture = SubResource("PlaceholderTexture2D_jiba8")
+polygon = PackedVector2Array(-48, -48, 80, 0, -48, 48)
+uv = PackedVector2Array(0, 0, 128, 0, 0, 0)
+
+[node name="Cursor" type="Node2D" parent="."]
+top_level = true
+z_index = 10
+script = ExtResource("3_mwmfc")
+
+[node name="CrosshairSprite" type="Sprite2D" parent="Cursor"]
+texture = ExtResource("2_7w4x6")

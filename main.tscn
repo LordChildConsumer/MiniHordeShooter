@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc816jevvx1md"]
+
+[ext_resource type="Texture2D" uid="uid://vocsotlh7qkk" path="res://icon.svg" id="1_ic7s5"]
+[ext_resource type="PackedScene" uid="uid://5ufingx2vmlv" path="res://player/player.tscn" id="2_ifi2p"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("1_ic7s5")
+region_enabled = true
+region_rect = Rect2(0, 0, 1920, 1080)
+
+[node name="Player" parent="." instance=ExtResource("2_ifi2p")]
