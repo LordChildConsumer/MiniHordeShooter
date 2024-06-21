@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu3ltb3ua6k4w"]
+
+[ext_resource type="Script" path="res://projectile/projectile.gd" id="1_0uqww"]
+
+[node name="BasicAttackP" type="CharacterBody2D"]
+script = ExtResource("1_0uqww")
+friendly = true
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-4, -4, 4, 0, -4, 4)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-4, -4, 4, 0, -4, 4)
