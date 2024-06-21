@@ -26,6 +26,7 @@ func get_health() -> int:
 ## Subtracts the given value from the current health. End result will be no less than 0.
 func hurt(value: int) -> void:
 	health = max(health - value, 0);
+	print_debug("Hurt for %s. Health left = %s" % [value, health]);
 
 ## Adds the given value to the current health. End result will be no greater than [member max_health]
 func heal(value: int) -> void:

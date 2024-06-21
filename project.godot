@@ -56,8 +56,8 @@ attack_one={
 
 [layer_names]
 
-3d_physics/layer_1="World"
-3d_physics/layer_2="Player Physics"
-3d_physics/layer_3="Player Hitbox"
-3d_physics/layer_4="Enemy Physics"
-3d_physics/layer_5="Enemy Hitbox"
+2d_physics/layer_1="World"
+2d_physics/layer_2="Player Physics"
+2d_physics/layer_3="Player Hitbox"
+2d_physics/layer_4="Enemy Physics"
+2d_physics/layer_5="Enemy Hitbox"

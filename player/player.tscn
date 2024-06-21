@@ -19,7 +19,21 @@ shader_parameter/bar = Color(1, 1, 1, 1)
 size = Vector2(128, 96)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_decup")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("5_ev15s")
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("6_lws5r")
+health = NodePath("../Health")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+polygon = PackedVector2Array(-48, -48, 80, 0, -48, 48)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
@@ -44,10 +58,3 @@ texture = ExtResource("4_v4pjf")
 
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(80, 0)
-
-[node name="Health" type="Node" parent="."]
-script = ExtResource("5_ev15s")
-
-[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
-script = ExtResource("6_lws5r")
-health = NodePath("../Health")

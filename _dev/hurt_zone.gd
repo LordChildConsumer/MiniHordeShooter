@@ -5,7 +5,7 @@ class_name HurtZone extends Area2D;
 
 
 ## The amount of damage to deal every [param tick].
-@export var damage: float = 10.0;
+@export var damage: int = 10.0;
 ## The time in seconds between dealing damage.
 @export var tick: float = 1.0;
 
@@ -30,7 +30,7 @@ func _ready() -> void:
 ## Adds [param area] to [member hitboxes] if [param area] is a [Hitbox].
 func _on_area_entered(area: Area2D) -> void:
 	if area is Hitbox:
-		pass;
+		hitboxes.push_back(area);
 
 
 ## Removes [param area] from [member hitboxes] if [member hitboxes] has [param area].
@@ -44,3 +44,8 @@ func _on_area_exited(area: Area2D) -> void:
 func _on_tick_timer_timeout() -> void:
 	for hb: Hitbox in hitboxes:
 		hb.hurt(damage);
+
+
+## Returns the amount of time before [member tick_timer] reaches 0 and damage is dealt.
+func get_seconds_until_damage() -> float:
+	return tick_timer.time_left;

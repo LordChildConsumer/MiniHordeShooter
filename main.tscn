@@ -1,14 +1,57 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc816jevvx1md"]
+[gd_scene load_steps=6 format=3 uid="uid://cc816jevvx1md"]
 
 [ext_resource type="Texture2D" uid="uid://vocsotlh7qkk" path="res://icon.svg" id="1_ic7s5"]
 [ext_resource type="PackedScene" uid="uid://5ufingx2vmlv" path="res://player/player.tscn" id="2_ifi2p"]
+[ext_resource type="Script" path="res://_dev/hurt_zone.gd" id="3_qnd0e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n4wdb"]
+size = Vector2(128, 128)
+
+[sub_resource type="GDScript" id="GDScript_tnsjf"]
+resource_name = "HurtProg"
+script/source = "extends ProgressBar
+
+@onready var hurt_zone: HurtZone = get_parent() as HurtZone;
+
+
+func _ready() -> void:
+	if hurt_zone:
+		max_value = hurt_zone.tick;
+
+
+func _process(_delta: float) -> void:
+	if hurt_zone:
+		value = hurt_zone.get_seconds_until_damage();
+"
 
 [node name="Main" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture_repeat = 2
 texture = ExtResource("1_ic7s5")
 region_enabled = true
 region_rect = Rect2(0, 0, 1920, 1080)
+
+[node name="HurtZone" type="Area2D" parent="."]
+position = Vector2(320, 0)
+collision_layer = 20
+collision_mask = 20
+script = ExtResource("3_qnd0e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtZone"]
+shape = SubResource("RectangleShape2D_n4wdb")
+
+[node name="Polygon2D" type="Polygon2D" parent="HurtZone"]
+color = Color(1, 0, 0, 0.317647)
+polygon = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+
+[node name="HurtProg" type="ProgressBar" parent="HurtZone"]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = -53.0
+show_percentage = false
+script = SubResource("GDScript_tnsjf")
 
 [node name="Player" parent="." instance=ExtResource("2_ifi2p")]
