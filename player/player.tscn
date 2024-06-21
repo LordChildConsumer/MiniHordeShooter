@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://5ufingx2vmlv"]
+[gd_scene load_steps=9 format=3 uid="uid://5ufingx2vmlv"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_decup"]
 [ext_resource type="Shader" path="res://shaders/player_health/player_health.gdshader" id="1_hami3"]
-[ext_resource type="Texture2D" uid="uid://cfwtykn8qlssg" path="res://ui/crosshairs/crosshair085.png" id="2_7w4x6"]
 [ext_resource type="Script" path="res://player/cursor.gd" id="3_mwmfc"]
+[ext_resource type="Texture2D" uid="uid://cddf8wh6137s" path="res://ui/crosshairs/crosshair038.png" id="4_v4pjf"]
+[ext_resource type="Script" path="res://components/health.gd" id="5_ev15s"]
+[ext_resource type="Script" path="res://components/hitbox.gd" id="6_lws5r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ihg4o"]
 shader = ExtResource("1_hami3")
@@ -38,4 +40,14 @@ z_index = 10
 script = ExtResource("3_mwmfc")
 
 [node name="CrosshairSprite" type="Sprite2D" parent="Cursor"]
-texture = ExtResource("2_7w4x6")
+texture = ExtResource("4_v4pjf")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(80, 0)
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("5_ev15s")
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("6_lws5r")
+health = NodePath("../Health")
