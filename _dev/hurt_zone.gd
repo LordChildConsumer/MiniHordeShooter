@@ -5,7 +5,7 @@ class_name HurtZone extends Area2D;
 
 
 ## The amount of damage to deal every [param tick].
-@export var damage: int = 10.0;
+@export var damage: int = 10;
 ## The time in seconds between dealing damage.
 @export var tick: float = 1.0;
 
