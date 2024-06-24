@@ -102,6 +102,7 @@ func get_next_global_position(velocity: Vector2) -> Vector2:
 	skip_check.target_position = velocity;
 	
 	if skip_check.is_colliding():
+		# FIXME: Causes unintended behavior when colliding with non-hitbox area
 		return skip_check.get_collision_point();
 	
 	else:

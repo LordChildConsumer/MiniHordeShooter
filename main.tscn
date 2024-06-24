@@ -35,7 +35,6 @@ region_rect = Rect2(0, 0, 1920, 1080)
 
 [node name="HurtZone" type="Area2D" parent="."]
 position = Vector2(320, 0)
-collision_layer = 20
 collision_mask = 20
 script = ExtResource("3_qnd0e")
 

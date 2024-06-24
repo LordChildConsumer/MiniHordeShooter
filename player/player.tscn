@@ -54,18 +54,18 @@ uv = PackedVector2Array(0, 0, 128, 0, 0, 0)
 script = ExtResource("5_05487")
 health_component = NodePath("../Health")
 
-[node name="Cursor" type="Node2D" parent="."]
+[node name="Cursor" type="Node2D" parent="." node_paths=PackedStringArray("player_weapon")]
 top_level = true
 z_index = 10
 script = ExtResource("3_mwmfc")
+player_weapon = NodePath("../Weapon")
 
 [node name="CrosshairSprite" type="Sprite2D" parent="Cursor"]
 texture = ExtResource("4_v4pjf")
 
-[node name="Weapon" type="Marker2D" parent="." node_paths=PackedStringArray("current_attack")]
+[node name="Weapon" type="Marker2D" parent="."]
 position = Vector2(80, 0)
 script = ExtResource("8_fhjhf")
-current_attack = NodePath("BasicAttack")
 
 [node name="BasicAttack" type="Node2D" parent="Weapon"]
 script = ExtResource("9_ocn7y")
