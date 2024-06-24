@@ -1,10 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cc816jevvx1md"]
+[gd_scene load_steps=6 format=3 uid="uid://cc816jevvx1md"]
 
 [ext_resource type="Texture2D" uid="uid://vocsotlh7qkk" path="res://icon.svg" id="1_ic7s5"]
 [ext_resource type="PackedScene" uid="uid://5ufingx2vmlv" path="res://player/player.tscn" id="2_ifi2p"]
 [ext_resource type="Script" path="res://_dev/hurt_zone.gd" id="3_qnd0e"]
-[ext_resource type="Script" path="res://components/hitbox.gd" id="4_xq0wm"]
-[ext_resource type="Script" path="res://components/health.gd" id="5_vob8a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n4wdb"]
 size = Vector2(128, 128)
@@ -25,9 +23,6 @@ func _process(_delta: float) -> void:
 	if hurt_zone:
 		value = hurt_zone.get_seconds_until_damage();
 "
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kw1sd"]
-size = Vector2(64, 64)
 
 [node name="Main" type="Node2D"]
 
@@ -60,18 +55,3 @@ show_percentage = false
 script = SubResource("GDScript_tnsjf")
 
 [node name="Player" parent="." instance=ExtResource("2_ifi2p")]
-
-[node name="HitboxTest" type="Node2D" parent="."]
-position = Vector2(0, -192)
-
-[node name="Hitbox" type="Area2D" parent="HitboxTest" node_paths=PackedStringArray("health")]
-collision_layer = 16
-collision_mask = 16
-script = ExtResource("4_xq0wm")
-health = NodePath("../Health")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxTest/Hitbox"]
-shape = SubResource("RectangleShape2D_kw1sd")
-
-[node name="Health" type="Node" parent="HitboxTest"]
-script = ExtResource("5_vob8a")

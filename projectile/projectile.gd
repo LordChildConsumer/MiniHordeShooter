@@ -1,4 +1,4 @@
-class_name Projectile extends CharacterBody2D;
+class_name Projectile extends Area2D;
 
 # TODO: Make projectiles an Area2D instead of CharacterBody2D.
 #       because move_and_collide() does not collide with areas.
@@ -31,9 +31,27 @@ const COLLISION_LAYER: int = 0x20;
 
 ## When this timer reaches 0 the projectile will automatically despawn.
 @onready var lifetime_timer: Timer = Timer.new();
+## The [RayCast2D] used to check collisions even if the projectile
+## skipped over an enemy.
+@onready var skip_check: RayCast2D = RayCast2D.new();
+
+
+func _ready() -> void:
+	collision_layer = COLLISION_LAYER;
+	
+	# Configure lifetime_timer
+	lifetime_timer.wait_time = max_lifetime;
+	lifetime_timer.autostart = true;
+	lifetime_timer.one_shot = true;
+	lifetime_timer.timeout.connect(_on_lifetime_timer_timeout);
+	add_child(lifetime_timer);
+	
+	# Add skip_check to scene.
+	add_child(skip_check);
 
 
 ## Sets initial values like speed, direction, damage, etc.
+## CALLED AFTER [method _ready].
 func setup(
 	spawn_position: Vector2,
 	direction: Vector2,
@@ -52,30 +70,42 @@ func setup(
 	if is_friendly:     collision_mask = friendly_collision_mask;
 	else:               collision_mask = hostile_collision_mask;
 	
+	# Configure skip_check
+	skip_check.collision_mask = collision_mask;
+	skip_check.collide_with_areas = true;
+	
 	# Set velocity and face direction
 	rotation = dir.angle();
-	velocity = dir * spd;
-
-
-func _ready() -> void:
-	collision_layer = COLLISION_LAYER;
-	
-	# Configure lifetime_timer
-	lifetime_timer.wait_time = max_lifetime;
-	lifetime_timer.autostart = true;
-	lifetime_timer.one_shot = true;
-	lifetime_timer.timeout.connect(_on_lifetime_timer_timeout);
-	add_child(lifetime_timer);
 
 
 func _physics_process(delta: float) -> void:
-	var collision = move_and_collide(velocity * delta);
-	if collision:
-		var hb := collision.get_collider() as Hitbox;
-		if hb:
-			hb.hurt(dmg);
+	# Move the projectile.
+	var next_pos := get_next_global_position(dir * spd * delta);
+	global_position = next_pos;
+	
+	# Check for hitboxes.
+	for area: Area2D in get_overlapping_areas():
+		if area is Hitbox:
+			(area as Hitbox).hurt(dmg);
 			print_debug("Hurt Hitbox for %s" % dmg);
+			queue_free();
+	
+	# Check for bodies.
+	if get_overlapping_bodies().size() > 0:
+		print_debug("Hit body!");
 		queue_free();
+
+
+## Gets the next position of the projectile based on the projectile's velocity.
+## If skip_check is colliding the collision point is returned instead.
+func get_next_global_position(velocity: Vector2) -> Vector2:
+	skip_check.target_position = velocity;
+	
+	if skip_check.is_colliding():
+		return skip_check.get_collision_point();
+	
+	else:
+		return global_position + velocity;
 
 
 ## Frees the projectile when [member lifetime_timer] has reached 0.

@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://components/hitbox.gd" id="6_lws5r"]
 [ext_resource type="Script" path="res://player/player_weapon.gd" id="8_fhjhf"]
 [ext_resource type="Script" path="res://attack/attack.gd" id="9_ocn7y"]
-[ext_resource type="PackedScene" uid="uid://cu3ltb3ua6k4w" path="res://projectile/friendly/BasicAttack_P.tscn" id="10_5g6sa"]
+[ext_resource type="PackedScene" uid="uid://cu3ltb3ua6k4w" path="res://projectile/friendly/BasicProj_P.tscn" id="10_5g6sa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ihg4o"]
 shader = ExtResource("1_hami3")
