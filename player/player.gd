@@ -35,7 +35,6 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(_delta: float) -> void:
-	
 	# Mouse Aim
 	look_at(get_global_mouse_position());
 

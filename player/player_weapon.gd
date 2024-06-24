@@ -17,10 +17,3 @@ func _process(_delta: float) -> void:
 			global_position,
 			global_position.direction_to(get_global_mouse_position())
 		);
-
-#func _input(event: InputEvent) -> void:
-	#if event.is_action("attack_one") && current_attack:
-		#current_attack.try_attack(
-			#global_position,
-			#global_position.direction_to(get_global_mouse_position())
-		#);

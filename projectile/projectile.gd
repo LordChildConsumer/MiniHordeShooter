@@ -1,5 +1,8 @@
 class_name Projectile extends CharacterBody2D;
 
+# TODO: Make projectiles an Area2D instead of CharacterBody2D.
+#       because move_and_collide() does not collide with areas.
+
 ## The base class for all projectiles
 
 ## The collision layer every [Projectile] will use.
@@ -34,6 +37,7 @@ const COLLISION_LAYER: int = 0x20;
 func setup(
 	spawn_position: Vector2,
 	direction: Vector2,
+	# TODO: Remove damage, is_friendly, and speed from this.
 	damage: int = dmg,
 	is_friendly: bool = friendly,
 	speed: float = spd
@@ -67,8 +71,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(velocity * delta);
 	if collision:
-		# TODO: Deal damage to hitboxes.
-		print_debug("Collided with %s" % collision.get_collider().name);
+		var hb := collision.get_collider() as Hitbox;
+		if hb:
+			hb.hurt(dmg);
+			print_debug("Hurt Hitbox for %s" % dmg);
 		queue_free();
 
 

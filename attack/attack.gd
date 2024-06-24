@@ -5,7 +5,7 @@ class_name Attack extends Node2D;
 
 ## Emitted when a projectile is successfully spawned.
 ## Used mainly to update the cursor's juice.
-signal attack_successful;
+signal attack_successful; # TODO: Link this to cursor juice
 
 
 ## The amount of time, in seconds, between each attack.
