@@ -23,6 +23,9 @@ class_name Player extends CharacterBody2D;
 func _ready() -> void:
 	# Hide the system cursor because I use a custom software cursor for JUICE.
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN);
+	
+	# Update Overseer with reference to self
+	Overseer.player.node = self;
 
 
 # DEBUG: Toggles mouse cursor visibility

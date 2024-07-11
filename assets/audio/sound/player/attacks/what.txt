@@ -1,0 +1,2 @@
+BasicAttackP_0	||	Retro FX 62
+BasicAttackP_1	||	Retro FX 64
