@@ -3,7 +3,7 @@ class_name Player extends CharacterBody2D;
 ## The Player.
 
 @export_group("Movement")
-## The speed the player moves (px/s).
+## The speed the player moves at (px/s).
 @export var move_speed: float = 500.0;
 ## Player will reach full speed in [code]1/accel[/code] seconds.
 @export var accel: float = 25.0;
