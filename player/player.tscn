@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://5ufingx2vmlv"]
+[gd_scene load_steps=12 format=3 uid="uid://5ufingx2vmlv"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_decup"]
-[ext_resource type="Shader" path="res://shaders/player_health/player_health.gdshader" id="1_hami3"]
 [ext_resource type="Script" path="res://player/cursor.gd" id="3_mwmfc"]
+[ext_resource type="Material" uid="uid://d08g1w4slcs76" path="res://shaders/player_health/player_health_shader.tres" id="4_lfv5r"]
 [ext_resource type="Texture2D" uid="uid://cddf8wh6137s" path="res://ui/crosshairs/crosshair038.png" id="4_v4pjf"]
 [ext_resource type="Script" path="res://player/player_polygon.gd" id="5_05487"]
 [ext_resource type="Script" path="res://components/health.gd" id="5_ev15s"]
@@ -10,14 +10,6 @@
 [ext_resource type="Script" path="res://player/player_weapon.gd" id="8_fhjhf"]
 [ext_resource type="Script" path="res://attack/attack.gd" id="9_ocn7y"]
 [ext_resource type="PackedScene" uid="uid://cu3ltb3ua6k4w" path="res://projectile/friendly/BasicProj_P.tscn" id="10_5g6sa"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ihg4o"]
-shader = ExtResource("1_hami3")
-shader_parameter/pct = 1.0
-shader_parameter/bar_size = 0.025
-shader_parameter/over = Color(0.14902, 0.776471, 0.854902, 1)
-shader_parameter/under = Color(0.00392157, 0.341176, 0.607843, 1)
-shader_parameter/bar = Color(1, 1, 1, 1)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jiba8"]
 size = Vector2(128, 96)
@@ -47,7 +39,7 @@ position_smoothing_speed = 25.0
 polygon = PackedVector2Array(-48, -48, 80, 0, -48, 48)
 
 [node name="Polygon" type="Polygon2D" parent="." node_paths=PackedStringArray("health_component")]
-material = SubResource("ShaderMaterial_ihg4o")
+material = ExtResource("4_lfv5r")
 texture = SubResource("PlaceholderTexture2D_jiba8")
 polygon = PackedVector2Array(-48, -48, 80, 0, -48, 48)
 uv = PackedVector2Array(0, 0, 128, 0, 0, 0)

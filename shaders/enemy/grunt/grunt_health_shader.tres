@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c3wjdvchc6q7e"]
+
+[ext_resource type="Shader" path="res://shaders/enemy/grunt/grunt_health.gdshader" id="1_sg2r0"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_sg2r0")
+shader_parameter/pct = 1.0
+shader_parameter/bar_size = 0.15
+shader_parameter/over = Color(0.921569, 0.0745098, 0.215686, 1)
+shader_parameter/under = Color(0.568627, 0, 0.172549, 1)
+shader_parameter/bar = Color(1, 1, 1, 1)
