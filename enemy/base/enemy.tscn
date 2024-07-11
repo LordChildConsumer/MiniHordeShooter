@@ -18,6 +18,7 @@ health = 50
 script = ExtResource("2_rqs7t")
 
 [node name="MoveDirection" type="Node2D" parent="."]
+visible = false
 
 [node name="Polygon2D" type="Polygon2D" parent="MoveDirection"]
 position = Vector2(64, 0)
@@ -26,3 +27,7 @@ polygon = PackedVector2Array(8, 0, 0, -8, 0, 8)
 [node name="UpdatePathing" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 48.0
