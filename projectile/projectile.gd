@@ -87,12 +87,12 @@ func _physics_process(delta: float) -> void:
 	for area: Area2D in get_overlapping_areas():
 		if area is Hitbox:
 			(area as Hitbox).hurt(dmg);
-			print_debug("Hurt Hitbox for %s" % dmg);
+			#print_debug("Hurt Hitbox for %s" % dmg);
 			queue_free();
 	
 	# Check for bodies.
 	if get_overlapping_bodies().size() > 0:
-		print_debug("Hit body!");
+		#print_debug("Hit body!");
 		queue_free();
 
 

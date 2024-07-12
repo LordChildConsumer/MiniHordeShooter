@@ -69,6 +69,7 @@ func _on_area_exited(area: Area2D) -> void:
 
 
 ## Loops through [member target_hitboxes] and deals damage to each hitbox.
+## Also restarts [member attack_timer].
 func hurt_hitboxes() -> void:
 	for hb: Hitbox in target_hitboxes:
 		hb.hurt(damage);

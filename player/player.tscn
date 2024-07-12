@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://player/cursor.gd" id="3_mwmfc"]
 [ext_resource type="Material" uid="uid://d08g1w4slcs76" path="res://shaders/player_health/player_health_shader.tres" id="4_lfv5r"]
 [ext_resource type="Texture2D" uid="uid://cddf8wh6137s" path="res://ui/crosshairs/crosshair038.png" id="4_v4pjf"]
-[ext_resource type="Script" path="res://player/player_polygon.gd" id="5_05487"]
 [ext_resource type="Script" path="res://components/health.gd" id="5_ev15s"]
+[ext_resource type="Script" path="res://components/health_poly.gd" id="5_hktkc"]
 [ext_resource type="Script" path="res://components/hitbox.gd" id="6_lws5r"]
 [ext_resource type="Script" path="res://player/player_weapon.gd" id="8_fhjhf"]
 [ext_resource type="Script" path="res://attack/attack.gd" id="9_ocn7y"]
@@ -43,8 +43,9 @@ material = ExtResource("4_lfv5r")
 texture = SubResource("PlaceholderTexture2D_jiba8")
 polygon = PackedVector2Array(-48, -48, 80, 0, -48, 48)
 uv = PackedVector2Array(0, 0, 128, 0, 0, 0)
-script = ExtResource("5_05487")
+script = ExtResource("5_hktkc")
 health_component = NodePath("../Health")
+tween_trans = 5
 
 [node name="Cursor" type="Node2D" parent="." node_paths=PackedStringArray("player_weapon")]
 top_level = true
