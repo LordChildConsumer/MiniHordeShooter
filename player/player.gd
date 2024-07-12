@@ -78,3 +78,9 @@ func get_new_velocity(
 	delta: float,
 ) -> Vector2:
 	return current_velocity.lerp(desired_velocity, weight * delta);
+
+
+## Returns a reference to the player's Health
+## or null if one cannot be found.
+func get_health_component() -> Health:
+	return get_node_or_null("Health");
