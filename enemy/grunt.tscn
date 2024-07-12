@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://ekoiptpmfgic"]
+[gd_scene load_steps=12 format=3 uid="uid://ekoiptpmfgic"]
 
 [ext_resource type="PackedScene" uid="uid://buw2e4iufgd6b" path="res://enemy/base/enemy.tscn" id="1_teq23"]
 [ext_resource type="Material" uid="uid://c3wjdvchc6q7e" path="res://shaders/enemy/grunt/grunt_health_shader.tres" id="2_7fp8q"]
 [ext_resource type="Script" path="res://enemy/grunt_polygon.gd" id="3_v6vo6"]
+[ext_resource type="Script" path="res://attack/melee_attack.gd" id="4_wdt70"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4r1f1"]
 size = Vector2(64, 64)
@@ -75,6 +76,9 @@ _data = {
 "auto": SubResource("Animation_deu46")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kiapr"]
+size = Vector2(80, 80)
+
 [node name="Grunt" instance=ExtResource("1_teq23")]
 collision_layer = 8
 collision_mask = 9
@@ -110,3 +114,9 @@ libraries = {
 "": SubResource("AnimationLibrary_w7pbo")
 }
 autoplay = "auto"
+
+[node name="MeleeAttack" type="Area2D" parent="." index="8"]
+script = ExtResource("4_wdt70")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeAttack" index="0"]
+shape = SubResource("RectangleShape2D_kiapr")

@@ -1,6 +1,7 @@
 class_name Attack extends Node2D;
 
 ## The base class for all attacks.
+## Currently only designed for the player.
 
 
 ## Emitted when a projectile is successfully spawned.

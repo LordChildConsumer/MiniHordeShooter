@@ -22,28 +22,28 @@ position = Vector2(0, -384)
 position = Vector2(0, 96)
 
 [node name="Grunt2" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(-96, 0)
+position = Vector2(0, -64)
 
 [node name="Grunt3" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(-192, 96)
+position = Vector2(-128, 96)
 
 [node name="Grunt4" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(-288, 8)
+position = Vector2(-128, -64)
 
 [node name="Grunt5" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(96, 0)
+position = Vector2(-256, 96)
 
 [node name="Grunt6" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(192, 96)
+position = Vector2(-256, -64)
 
 [node name="Grunt7" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(288, 0)
+position = Vector2(128, 96)
 
 [node name="Grunt8" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(0, -96)
+position = Vector2(128, -64)
 
 [node name="Grunt9" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(-192, -96)
+position = Vector2(256, 96)
 
 [node name="Grunt10" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(192, -96)
+position = Vector2(256, -64)
