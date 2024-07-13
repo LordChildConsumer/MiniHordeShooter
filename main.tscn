@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cc816jevvx1md"]
+[gd_scene load_steps=6 format=3 uid="uid://cc816jevvx1md"]
 
+[ext_resource type="Shader" path="res://shaders/screen/crt.gdshader" id="1_t4nsm"]
 [ext_resource type="PackedScene" uid="uid://5ufingx2vmlv" path="res://player/player.tscn" id="2_ifi2p"]
 [ext_resource type="PackedScene" uid="uid://ekoiptpmfgic" path="res://enemy/grunt.tscn" id="4_ulolh"]
 
@@ -8,8 +9,24 @@ background_mode = 3
 tonemap_mode = 2
 glow_enabled = true
 glow_normalized = true
-glow_bloom = 0.04
-glow_blend_mode = 1
+glow_strength = 1.4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_biwqa"]
+shader = ExtResource("1_t4nsm")
+shader_parameter/resolution = Vector2(1280, 720)
+shader_parameter/scan_line_amount = 0.5
+shader_parameter/warp_amount = 0.1
+shader_parameter/noise_amount = 0.015
+shader_parameter/interference_amount = 0.2
+shader_parameter/grille_amount = 0.1
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.6
+shader_parameter/vignette_intensity = 0.3
+shader_parameter/aberation_amount = 0.5
+shader_parameter/roll_line_amount = 0.0
+shader_parameter/roll_speed = 1.0
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
 
 [node name="Main" type="Node2D"]
 
@@ -17,7 +34,7 @@ glow_blend_mode = 1
 environment = SubResource("Environment_hfutu")
 
 [node name="BG" type="CanvasLayer" parent="."]
-layer = -2
+layer = -15
 
 [node name="ColorRect" type="ColorRect" parent="BG"]
 anchors_preset = 15
@@ -26,6 +43,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.101961, 0.101961, 0.105882, 1)
+
+[node name="PostProcessing" type="CanvasLayer" parent="."]
+layer = 15
+
+[node name="CRT" type="ColorRect" parent="PostProcessing"]
+visible = false
+material = SubResource("ShaderMaterial_biwqa")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Player" parent="." instance=ExtResource("2_ifi2p")]
 
