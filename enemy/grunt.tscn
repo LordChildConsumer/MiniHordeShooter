@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://ekoiptpmfgic"]
+[gd_scene load_steps=13 format=3 uid="uid://ekoiptpmfgic"]
 
 [ext_resource type="PackedScene" uid="uid://buw2e4iufgd6b" path="res://enemy/base/enemy.tscn" id="1_teq23"]
 [ext_resource type="Material" uid="uid://c3wjdvchc6q7e" path="res://shaders/enemy/grunt/grunt_health_shader.tres" id="2_7fp8q"]
 [ext_resource type="Script" path="res://components/health_poly.gd" id="3_n3u2s"]
 [ext_resource type="Script" path="res://attack/melee_attack.gd" id="4_wdt70"]
+[ext_resource type="PackedScene" uid="uid://bo840exfxpum7" path="res://pickups/health/small_health_pickup.tscn" id="5_1goch"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4r1f1"]
 size = Vector2(64, 64)
@@ -116,7 +117,13 @@ libraries = {
 autoplay = "auto"
 
 [node name="MeleeAttack" type="Area2D" parent="." index="8"]
+visible = false
 script = ExtResource("4_wdt70")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeAttack" index="0"]
 shape = SubResource("RectangleShape2D_kiapr")
+
+[node name="LootDropper" parent="." index="9"]
+legendary_drops = Array[PackedScene]([ExtResource("5_1goch")])
+rare_drops = Array[PackedScene]([ExtResource("5_1goch")])
+common_drops = Array[PackedScene]([ExtResource("5_1goch")])

@@ -85,6 +85,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Check for hitboxes.
 	for area: Area2D in get_overlapping_areas():
+		# FIXME: This check is probably what causes it to get stuck
 		if area is Hitbox:
 			(area as Hitbox).hurt(dmg);
 			#print_debug("Hurt Hitbox for %s" % dmg);
@@ -92,7 +93,6 @@ func _physics_process(delta: float) -> void:
 	
 	# Check for bodies.
 	if get_overlapping_bodies().size() > 0:
-		#print_debug("Hit body!");
 		queue_free();
 
 

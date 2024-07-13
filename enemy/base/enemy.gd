@@ -24,6 +24,9 @@ class_name Enemy extends CharacterBody2D;
 ## avoids other enemies.
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D as NavigationAgent2D;
 
+## The node called on death to drop loot, if any.
+@onready var loot_dropper: LootDropper = $LootDropper;
+
 ## The position this enemy should be moving towards.
 ## Updated when [member pathing_timer] times out.
 var target_position: Vector2 = Vector2.INF;
@@ -83,5 +86,6 @@ func _on_nav_agent_velocity_computed(safe_velocity: Vector2) -> void:
 
 ## Runs when this enemy's [member health] reaches 0.
 func _on_health_zero() -> void:
+	loot_dropper.try_drop();
 	queue_free();
 

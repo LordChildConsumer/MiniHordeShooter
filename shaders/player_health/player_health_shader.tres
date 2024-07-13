@@ -6,6 +6,6 @@
 shader = ExtResource("1_xf3s3")
 shader_parameter/pct = 1.0
 shader_parameter/bar_size = 0.025
-shader_parameter/over = Color(0.14902, 0.776471, 0.854902, 1)
-shader_parameter/under = Color(0.00392157, 0.341176, 0.607843, 1)
+shader_parameter/over = Color(0.0901961, 0.819608, 0.780392, 1)
+shader_parameter/under = Color(0.0901961, 0.509804, 0.858824, 1)
 shader_parameter/bar = Color(1, 1, 1, 1)
