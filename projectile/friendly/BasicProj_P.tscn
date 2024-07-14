@@ -4,6 +4,7 @@
 
 [node name="BasicProjectile_P" type="Area2D"]
 script = ExtResource("1_yv4hq")
+spd = 1000.0
 dmg = 10
 friendly = true
 

@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://attack/attack.gd" id="9_ocn7y"]
 [ext_resource type="PackedScene" uid="uid://cu3ltb3ua6k4w" path="res://projectile/friendly/BasicProj_P.tscn" id="10_5g6sa"]
 [ext_resource type="Script" path="res://player/player_sounds.gd" id="11_lykpo"]
-[ext_resource type="AudioStream" uid="uid://d2lol58ywg6cf" path="res://assets/audio/sound/player/attacks/BasicAttackP_0.wav" id="12_qfmsc"]
+[ext_resource type="AudioStream" uid="uid://d2cd4y7ubxsd2" path="res://assets/audio/sound/enemy/grunt_hurt.wav" id="12_6sooj"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jiba8"]
 size = Vector2(128, 96)
@@ -72,6 +72,6 @@ script = ExtResource("11_lykpo")
 attack = NodePath("../Weapon/BasicAttack")
 
 [node name="ShootSND" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("12_qfmsc")
+stream = ExtResource("12_6sooj")
 volume_db = -5.0
 max_polyphony = 4

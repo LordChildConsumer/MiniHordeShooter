@@ -2,7 +2,7 @@ class_name Health extends Node;
 
 ## Stores an entity's health, typically referenced by a Hitbox Component
 
-signal health_changed(new_health);
+signal health_changed(new_health, old_health);
 signal health_zero;
 
 
@@ -14,8 +14,9 @@ signal health_zero;
 
 # ---- Health Set/Get ---- #
 func set_health(value: int) -> void:
+	var old_health: int = health;
 	health = value;
-	health_changed.emit(health);
+	health_changed.emit(health, old_health);
 	if health <= 0: health_zero.emit();
 
 func get_health() -> int:

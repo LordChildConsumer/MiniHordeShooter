@@ -1,3 +1,3 @@
-BasicAttackP_0	||	Retro FX 62
-BasicAttackP_1	||	Retro FX 64
-BasicAttackP	||	Retro FX 85
+basic_attack_p_0	||	Retro FX 62
+basic_attack_p_1	||	Retro FX 64
+basic_attack_p		||	Retro FX 85

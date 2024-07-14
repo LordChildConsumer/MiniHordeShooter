@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dobxfpw6am71p"
-path="res://.godot/imported/BasicAttackP_1.wav-c5af01670d74c9b8d49e921457fcb0c0.sample"
+path="res://.godot/imported/basic_attack_p_1.wav-2a2d7610264c5bfdbc49830f952dfc4b.sample"
 
 [deps]
 
-source_file="res://assets/audio/sound/player/attacks/BasicAttackP_1.wav"
-dest_files=["res://.godot/imported/BasicAttackP_1.wav-c5af01670d74c9b8d49e921457fcb0c0.sample"]
+source_file="res://assets/audio/sound/player/attacks/basic_attack_p_1.wav"
+dest_files=["res://.godot/imported/basic_attack_p_1.wav-2a2d7610264c5bfdbc49830f952dfc4b.sample"]
 
 [params]
 

@@ -36,7 +36,7 @@ func _ready() -> void:
 
 
 ## Updates the [param pct] of the health shader.
-func _on_health_component_health_changed(new_health: int) -> void:
+func _on_health_component_health_changed(new_health: int, _old_health: int) -> void:
 	# Maps current health between 0.0 and 1.0 since that's what 'pct' expects.
 	var pct := inverse_lerp(0.0, health_component.max_health, new_health);
 	

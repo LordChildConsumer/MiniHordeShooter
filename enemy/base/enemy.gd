@@ -27,6 +27,9 @@ class_name Enemy extends CharacterBody2D;
 ## The node called on death to drop loot, if any.
 @onready var loot_dropper: LootDropper = $LootDropper;
 
+## The node that handles playing the various enemy sounds.
+@onready var sound_parent: EnemySounds = $Sounds as EnemySounds;
+
 ## The position this enemy should be moving towards.
 ## Updated when [member pathing_timer] times out.
 var target_position: Vector2 = Vector2.INF;
@@ -37,6 +40,7 @@ func _ready() -> void:
 	if !health:
 		push_warning("No Health Component @ '%s'." % get_path());
 	else:
+		health.health_changed.connect(_on_health_changed);
 		health.health_zero.connect(_on_health_zero);
 	
 	# Connect pathing_timer.timeout to update_target_position.
@@ -82,6 +86,12 @@ func update_target_position() -> void:
 func _on_nav_agent_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity;
 	move_and_slide();
+
+
+## Runs when this enemy's [member health] changes.
+func _on_health_changed(new: int, old: int) -> void:
+	if new < old:
+		sound_parent.play_hurt();
 
 
 ## Runs when this enemy's [member health] reaches 0.
