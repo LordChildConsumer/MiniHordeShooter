@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://5ufingx2vmlv"]
+[gd_scene load_steps=14 format=3 uid="uid://5ufingx2vmlv"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_decup"]
 [ext_resource type="Script" path="res://player/cursor.gd" id="3_mwmfc"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://player/player_weapon.gd" id="8_fhjhf"]
 [ext_resource type="Script" path="res://attack/attack.gd" id="9_ocn7y"]
 [ext_resource type="PackedScene" uid="uid://cu3ltb3ua6k4w" path="res://projectile/friendly/BasicProj_P.tscn" id="10_5g6sa"]
+[ext_resource type="Script" path="res://player/player_sounds.gd" id="11_lykpo"]
+[ext_resource type="AudioStream" uid="uid://d2lol58ywg6cf" path="res://assets/audio/sound/player/attacks/BasicAttackP_0.wav" id="12_qfmsc"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jiba8"]
 size = Vector2(128, 96)
@@ -64,3 +66,12 @@ script = ExtResource("8_fhjhf")
 script = ExtResource("9_ocn7y")
 delay = 0.2
 projectile_scene = ExtResource("10_5g6sa")
+
+[node name="Sounds" type="Node2D" parent="." node_paths=PackedStringArray("attack")]
+script = ExtResource("11_lykpo")
+attack = NodePath("../Weapon/BasicAttack")
+
+[node name="ShootSND" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("12_qfmsc")
+volume_db = -5.0
+max_polyphony = 4

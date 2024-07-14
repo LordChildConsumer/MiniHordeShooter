@@ -35,3 +35,5 @@ radius = 48.0
 
 [node name="LootDropper" type="Node2D" parent="."]
 script = ExtResource("4_y1oud")
+
+[node name="Sounds" type="Node2D" parent="."]

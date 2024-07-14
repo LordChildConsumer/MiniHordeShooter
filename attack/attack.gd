@@ -6,7 +6,7 @@ class_name Attack extends Node2D;
 
 ## Emitted when a projectile is successfully spawned.
 ## Currently only used to update the cursor's [b]JUICE[/b].
-signal attack_successful(cursor_speed, cursor_size, tween_speed); # TODO: Link this to cursor juice
+signal attack_successful(cursor_speed, cursor_size, tween_speed);
 
 
 @export_group("Stats")
@@ -24,6 +24,9 @@ signal attack_successful(cursor_speed, cursor_size, tween_speed); # TODO: Link t
 
 ## The [Timer] used to handle firerate.
 @onready var attack_timer: Timer = Timer.new();
+
+## A reference to the [Main] scene.
+@onready var main_scene: Main = get_tree().current_scene as Main;
 
 
 func _ready() -> void:
@@ -46,12 +49,11 @@ func try_attack(pos: Vector2, dir: Vector2) -> void:
 		push_error("Projectile Scene is not Projectile @ '%s'." % get_path());
 		return;
 	
-	# TODO: Make dedicated projectile parent so this is redundant.
-	proj.top_level = true;
-	add_child(proj);
-	
-	# Spawn the projectile.
-	proj.setup(pos, dir);
+	# Spawn projectile
+	if !main_scene:
+		push_error("Current scene is not main!");
+		return;
+	main_scene.spawn_projectile(proj, pos, dir);
 	
 	# Juice the cursor.
 	attack_successful.emit(cursor_rotation_speed, cursor_grow_scale, delay);

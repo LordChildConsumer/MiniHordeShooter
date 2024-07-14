@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cc816jevvx1md"]
+[gd_scene load_steps=7 format=3 uid="uid://cc816jevvx1md"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_7kk8i"]
 [ext_resource type="Shader" path="res://shaders/screen/crt.gdshader" id="1_t4nsm"]
 [ext_resource type="PackedScene" uid="uid://5ufingx2vmlv" path="res://player/player.tscn" id="2_ifi2p"]
 [ext_resource type="PackedScene" uid="uid://ekoiptpmfgic" path="res://enemy/grunt.tscn" id="4_ulolh"]
@@ -29,6 +30,7 @@ shader_parameter/scan_line_strength = -8.0
 shader_parameter/pixel_strength = -2.0
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_7kk8i")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hfutu")
@@ -48,7 +50,6 @@ color = Color(0.101961, 0.101961, 0.105882, 1)
 layer = 15
 
 [node name="CRT" type="ColorRect" parent="PostProcessing"]
-visible = false
 material = SubResource("ShaderMaterial_biwqa")
 anchors_preset = 15
 anchor_right = 1.0
@@ -116,3 +117,5 @@ move_speed = 0.0
 [node name="Grunt14" parent="Enemies" instance=ExtResource("4_ulolh")]
 position = Vector2(384, -64)
 move_speed = 0.0
+
+[node name="Projectiles" type="Node" parent="."]
