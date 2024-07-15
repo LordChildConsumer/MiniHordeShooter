@@ -23,7 +23,7 @@ var current_tween: Tween = null;
 
 
 func _ready() -> void:
-	# Gets a reference to the 'pct' uniform in the health shader.
+	# Gets a reference to the shader material.
 	var m: ShaderMaterial = material as ShaderMaterial;
 	if m: shader = m;
 	

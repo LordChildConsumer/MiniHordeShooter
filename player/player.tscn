@@ -1,6 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://5ufingx2vmlv"]
+[gd_scene load_steps=17 format=3 uid="uid://5ufingx2vmlv"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_decup"]
+[ext_resource type="Shader" path="res://shaders/screen/background.gdshader" id="2_5fqlc"]
+[ext_resource type="Script" path="res://player/bg.gd" id="2_85xfw"]
 [ext_resource type="Script" path="res://player/cursor.gd" id="3_mwmfc"]
 [ext_resource type="Material" uid="uid://d08g1w4slcs76" path="res://shaders/player_health/player_health_shader.tres" id="4_lfv5r"]
 [ext_resource type="Texture2D" uid="uid://cddf8wh6137s" path="res://ui/crosshairs/crosshair038.png" id="4_v4pjf"]
@@ -13,6 +15,17 @@
 [ext_resource type="Script" path="res://player/player_sounds.gd" id="11_lykpo"]
 [ext_resource type="AudioStream" uid="uid://d2cd4y7ubxsd2" path="res://assets/audio/sound/enemy/grunt_hurt.wav" id="12_6sooj"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aow1d"]
+shader = ExtResource("2_5fqlc")
+shader_parameter/cell_size = 32.0
+shader_parameter/dot_size = 0.1
+shader_parameter/background_color = Color(0.101961, 0.101961, 0.105882, 1)
+shader_parameter/dot_color = Color(0.27451, 0.282353, 0.286275, 1)
+shader_parameter/resolution = Vector2(1, 1)
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/anti_aliasing_factor = 0.01
+shader_parameter/stochastic_samples = 16
+
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jiba8"]
 size = Vector2(128, 96)
 
@@ -20,6 +33,20 @@ size = Vector2(128, 96)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_decup")
+
+[node name="BG" type="CanvasLayer" parent="." node_paths=PackedStringArray("camera")]
+layer = -15
+script = ExtResource("2_85xfw")
+camera = NodePath("../Camera2D")
+
+[node name="Dots" type="ColorRect" parent="BG"]
+material = SubResource("ShaderMaterial_aow1d")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101961, 0.101961, 0.105882, 1)
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("5_ev15s")

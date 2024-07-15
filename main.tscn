@@ -42,17 +42,6 @@ script = ExtResource("1_7kk8i")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hfutu")
 
-[node name="BG" type="CanvasLayer" parent="."]
-layer = -15
-
-[node name="ColorRect" type="ColorRect" parent="BG"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.101961, 0.101961, 0.105882, 1)
-
 [node name="PostProcessing" type="CanvasLayer" parent="."]
 layer = 15
 
