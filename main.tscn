@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cc816jevvx1md"]
+[gd_scene load_steps=9 format=3 uid="uid://cc816jevvx1md"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7kk8i"]
 [ext_resource type="Shader" path="res://shaders/screen/crt.gdshader" id="1_t4nsm"]
 [ext_resource type="PackedScene" uid="uid://5ufingx2vmlv" path="res://player/player.tscn" id="2_ifi2p"]
 [ext_resource type="PackedScene" uid="uid://ekoiptpmfgic" path="res://enemy/grunt.tscn" id="4_ulolh"]
+[ext_resource type="Script" path="res://enemy_spawner.gd" id="4_y543v"]
 
 [sub_resource type="Environment" id="Environment_hfutu"]
 background_mode = 3
@@ -28,6 +29,12 @@ shader_parameter/roll_line_amount = 0.0
 shader_parameter/roll_speed = 1.0
 shader_parameter/scan_line_strength = -8.0
 shader_parameter/pixel_strength = -2.0
+
+[sub_resource type="Curve2D" id="Curve2D_kqqjn"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -960, -540, 0, 0, 0, 0, 960, -540, 0, 0, 0, 0, 960, 540, 0, 0, 0, 0, -960, 540, 0, 0, 0, 0, -960, -540)
+}
+point_count = 5
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7kk8i")
@@ -59,63 +66,30 @@ grow_vertical = 2
 
 [node name="Player" parent="." instance=ExtResource("2_ifi2p")]
 
-[node name="Enemies" type="Node2D" parent="."]
-position = Vector2(0, -384)
-
-[node name="Grunt" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(0, 64)
-move_speed = 0.0
-
-[node name="Grunt2" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(0, -64)
-move_speed = 0.0
-
-[node name="Grunt3" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(-128, 64)
-move_speed = 0.0
-
-[node name="Grunt4" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(-128, -64)
-move_speed = 0.0
-
-[node name="Grunt5" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(-256, 64)
-move_speed = 0.0
-
-[node name="Grunt6" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(-256, -64)
-move_speed = 0.0
-
-[node name="Grunt7" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(-384, 64)
-move_speed = 0.0
-
-[node name="Grunt8" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(-384, -64)
-move_speed = 0.0
-
-[node name="Grunt9" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(128, 64)
-move_speed = 0.0
-
-[node name="Grunt10" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(128, -64)
-move_speed = 0.0
-
-[node name="Grunt11" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(256, 64)
-move_speed = 0.0
-
-[node name="Grunt12" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(256, -64)
-move_speed = 0.0
-
-[node name="Grunt13" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(384, 64)
-move_speed = 0.0
-
-[node name="Grunt14" parent="Enemies" instance=ExtResource("4_ulolh")]
-position = Vector2(384, -64)
-move_speed = 0.0
-
 [node name="Projectiles" type="Node" parent="."]
+
+[node name="EnemySpawner" type="Path2D" parent="."]
+curve = SubResource("Curve2D_kqqjn")
+script = ExtResource("4_y543v")
+enemy_scenes = Array[PackedScene]([ExtResource("4_ulolh")])
+
+[node name="SpawnPoint" type="PathFollow2D" parent="EnemySpawner"]
+position = Vector2(-960, -668)
+v_offset = -128.0
+
+[node name="EnemyParent" type="Node2D" parent="EnemySpawner"]
+
+[node name="DebugPoints" type="Node2D" parent="EnemySpawner"]
+visible = false
+
+[node name="TL" type="Polygon2D" parent="EnemySpawner/DebugPoints"]
+polygon = PackedVector2Array(0, -64, -8, -8, -64, 0, -8, 8, 0, 64, 8, 8, 64, 0, 8, -8)
+
+[node name="TR" type="Polygon2D" parent="EnemySpawner/DebugPoints"]
+polygon = PackedVector2Array(0, -64, -8, -8, -64, 0, -8, 8, 0, 64, 8, 8, 64, 0, 8, -8)
+
+[node name="BR" type="Polygon2D" parent="EnemySpawner/DebugPoints"]
+polygon = PackedVector2Array(0, -64, -8, -8, -64, 0, -8, 8, 0, 64, 8, 8, 64, 0, 8, -8)
+
+[node name="BL" type="Polygon2D" parent="EnemySpawner/DebugPoints"]
+polygon = PackedVector2Array(0, -64, -8, -8, -64, 0, -8, 8, 0, 64, 8, 8, 64, 0, 8, -8)

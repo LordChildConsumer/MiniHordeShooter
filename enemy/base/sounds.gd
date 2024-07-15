@@ -23,7 +23,6 @@ func play_attack() -> void:
 
 
 func play_hurt() -> void:
-	print_debug("playing hurt")
 	hurt.pitch_scale = get_pitch_scale(hurt_pitch_min, hurt_pitch_max);
 	hurt.play();
 
