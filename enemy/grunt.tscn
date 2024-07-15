@@ -84,6 +84,7 @@ size = Vector2(80, 80)
 [node name="Grunt" instance=ExtResource("1_teq23")]
 collision_layer = 8
 collision_mask = 9
+move_speed = 250.0
 
 [node name="GruntPolygon" type="Polygon2D" parent="Sprite" index="0" node_paths=PackedStringArray("health_component")]
 material = ExtResource("2_7fp8q")
@@ -129,7 +130,6 @@ shape = SubResource("RectangleShape2D_kiapr")
 [node name="LootDropper" parent="." index="9"]
 legendary_drops = Array[PackedScene]([ExtResource("5_1goch")])
 rare_drops = Array[PackedScene]([ExtResource("5_1goch")])
-common_drops = Array[PackedScene]([ExtResource("5_1goch")])
 
 [node name="Hurt" parent="Sounds" index="1"]
 stream = ExtResource("6_22d57")

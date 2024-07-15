@@ -58,6 +58,7 @@ func _input(event: InputEvent) -> void:
 		spawn_enemy();
 
 
+## Spawns an enemy at a "random" point along the curve.
 func spawn_enemy() -> void:
 	# Place the spawn point somewhere along the path.
 	spawn_point.progress_ratio = randf();
