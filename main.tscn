@@ -53,8 +53,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Player" parent="." instance=ExtResource("2_ifi2p")]
-
 [node name="Projectiles" type="Node" parent="."]
 
 [node name="EnemySpawner" type="Path2D" parent="."]
@@ -82,3 +80,5 @@ polygon = PackedVector2Array(0, -64, -8, -8, -64, 0, -8, 8, 0, 64, 8, 8, 64, 0, 
 
 [node name="BL" type="Polygon2D" parent="EnemySpawner/DebugPoints"]
 polygon = PackedVector2Array(0, -64, -8, -8, -64, 0, -8, 8, 0, 64, 8, 8, 64, 0, 8, -8)
+
+[node name="Player" parent="." instance=ExtResource("2_ifi2p")]

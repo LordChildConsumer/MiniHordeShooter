@@ -12,3 +12,6 @@ script = ExtResource("1_x6n27")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_rgrdg")
+
+[node name="Visibility" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(1.6, 1.6)
