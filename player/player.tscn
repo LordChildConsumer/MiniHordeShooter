@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://5ufingx2vmlv"]
+[gd_scene load_steps=20 format=3 uid="uid://5ufingx2vmlv"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_decup"]
 [ext_resource type="Shader" path="res://shaders/screen/background.gdshader" id="2_5fqlc"]
@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://attack/attack.gd" id="9_ocn7y"]
 [ext_resource type="PackedScene" uid="uid://cu3ltb3ua6k4w" path="res://projectile/friendly/BasicProj_P.tscn" id="10_5g6sa"]
 [ext_resource type="Script" path="res://player/player_sounds.gd" id="11_lykpo"]
-[ext_resource type="AudioStream" uid="uid://d2cd4y7ubxsd2" path="res://assets/audio/sound/enemy/grunt_hurt.wav" id="12_6sooj"]
+[ext_resource type="AudioStream" uid="uid://d2cd4y7ubxsd2" path="res://assets/audio/sound/player/attack.wav" id="12_6sooj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aow1d"]
 shader = ExtResource("2_5fqlc")
@@ -28,6 +28,44 @@ shader_parameter/stochastic_samples = 16
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jiba8"]
 size = Vector2(128, 96)
+
+[sub_resource type="Animation" id="Animation_hd8su"]
+resource_name = "test"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon:material:shader_parameter/pct")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_owdrv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon:material:shader_parameter/pct")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g5us1"]
+_data = {
+"RESET": SubResource("Animation_owdrv"),
+"test": SubResource("Animation_hd8su")
+}
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -102,3 +140,8 @@ attack = NodePath("../Weapon/BasicAttack")
 stream = ExtResource("12_6sooj")
 volume_db = -5.0
 max_polyphony = 4
+
+[node name="Test" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g5us1")
+}

@@ -7,6 +7,10 @@ class_name EnemySounds extends Node2D;
 @export var hurt_pitch_min: float = 0.9;
 @export var hurt_pitch_max: float = 1.1;
 
+@export_group("Death")
+@export var death_pitch_pin: float = 0.9;
+@export var death_pitch_max: float = 1.1;
+
 
 ## The [AudioStreamPlayer2D] with the attack sound.
 @onready var attack := $Attack as AudioStreamPlayer2D;
@@ -28,7 +32,8 @@ func play_hurt() -> void:
 
 
 func play_death() -> void:
-	pass;
+	death.pitch_scale = get_pitch_scale(death_pitch_pin, death_pitch_max);
+	death.play();
 
 
 

@@ -1,1 +1,2 @@
-grunt_hurt	||	Retro FX 14
+grunt_hurt	||	Retro FX 62
+grunt_death	||	Retro FX 64

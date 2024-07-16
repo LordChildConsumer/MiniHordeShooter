@@ -1,11 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://ekoiptpmfgic"]
+[gd_scene load_steps=15 format=3 uid="uid://ekoiptpmfgic"]
 
 [ext_resource type="PackedScene" uid="uid://buw2e4iufgd6b" path="res://enemy/base/enemy.tscn" id="1_teq23"]
 [ext_resource type="Material" uid="uid://c3wjdvchc6q7e" path="res://shaders/enemy/grunt/grunt_health_shader.tres" id="2_7fp8q"]
 [ext_resource type="Script" path="res://components/health_poly.gd" id="3_n3u2s"]
 [ext_resource type="Script" path="res://attack/melee_attack.gd" id="4_wdt70"]
 [ext_resource type="PackedScene" uid="uid://bo840exfxpum7" path="res://pickups/health/small_health_pickup.tscn" id="5_1goch"]
-[ext_resource type="AudioStream" uid="uid://d2lol58ywg6cf" path="res://assets/audio/sound/player/attacks/basic_attack_p_0.wav" id="6_22d57"]
+[ext_resource type="AudioStream" uid="uid://d2lol58ywg6cf" path="res://assets/audio/sound/enemy/grunt_hurt.wav" id="6_andm2"]
+[ext_resource type="AudioStream" uid="uid://cr5xbkf4kyry2" path="res://assets/audio/sound/enemy/grunt_death.wav" id="7_l2gme"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4r1f1"]
 size = Vector2(64, 64)
@@ -96,8 +97,8 @@ script = ExtResource("3_n3u2s")
 health_component = NodePath("../../Health")
 
 [node name="Health" parent="." index="1"]
-max_health = 30
-health = 30
+max_health = 40
+health = 40
 
 [node name="Hitbox" parent="." index="2" node_paths=PackedStringArray("health")]
 visible = false
@@ -109,7 +110,6 @@ health = NodePath("../Health")
 shape = SubResource("RectangleShape2D_nvqnh")
 
 [node name="PhysCollider" type="CollisionShape2D" parent="." index="5"]
-visible = false
 shape = SubResource("CircleShape2D_apq5i")
 
 [node name="Spin" type="AnimationPlayer" parent="." index="6"]
@@ -119,10 +119,10 @@ libraries = {
 autoplay = "auto"
 
 [node name="MeleeAttack" type="Area2D" parent="." index="8"]
-visible = false
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("4_wdt70")
+damage = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeAttack" index="0"]
 shape = SubResource("RectangleShape2D_kiapr")
@@ -132,5 +132,9 @@ legendary_drops = Array[PackedScene]([ExtResource("5_1goch")])
 rare_drops = Array[PackedScene]([ExtResource("5_1goch")])
 
 [node name="Hurt" parent="Sounds" index="1"]
-stream = ExtResource("6_22d57")
+stream = ExtResource("6_andm2")
 volume_db = -10.0
+
+[node name="Death" parent="Sounds" index="2"]
+stream = ExtResource("7_l2gme")
+volume_db = -5.0

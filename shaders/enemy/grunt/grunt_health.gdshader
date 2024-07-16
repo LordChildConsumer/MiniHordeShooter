@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform float pct: hint_range(0.0, 1.0, 0.01) = 0.5;
+uniform float pct: hint_range(0.0, 1.0, 0.01) = 1.0;
 uniform float bar_size: hint_range(0.0, 1.0, 0.001) = 0.15;
 uniform vec4 over: source_color = vec4(0.0, 1.0, 0.0, 1.0);
 uniform vec4 under: source_color = vec4(1.0, 0.0, 0.0, 1.0);
@@ -27,17 +27,10 @@ vec4 square_stroke(vec2 uv, float width, float stroke_width, bool invert)
 	return vec4(vec3(stroke), stroke.r);
 }
 
-vec4 overlay(vec4 base, vec4 blend){
-	vec4 limit = step(0.5, base);
-	return mix(2.0 * base * blend, 1.0 - 2.0 * (1.0 - base) * (1.0 - blend), limit);
-}
-
-
 
 void fragment() {
 	vec4 o = square(UV, pct, true) * over;
 	vec4 u = square(UV, pct, false) * under;
 	vec4 b = square_stroke(UV, pct, bar_size * pct, false) * bar;
-	
 	COLOR = o + u + b;
 }

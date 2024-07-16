@@ -34,6 +34,9 @@ class_name Enemy extends CharacterBody2D;
 ## Updated when [member pathing_timer] times out.
 var target_position: Vector2 = Vector2.INF;
 
+## If this is set to true, all enemy logic is disabled.
+var dead: bool = false;
+
 
 func _ready() -> void:
 	# Connect health_zero to _on_health_zero if child 'Health' is valid.
@@ -53,6 +56,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if dead:
+		return;
+	
 	# Using INF as a sort of null here because if that's ever the player's
 	# position then weird enemy navigation is the least of my worries.
 	if target_position != Vector2.INF:
@@ -90,12 +96,20 @@ func _on_nav_agent_velocity_computed(safe_velocity: Vector2) -> void:
 
 ## Runs when this enemy's [member health] changes.
 func _on_health_changed(new: int, old: int) -> void:
-	if new < old:
+	if new < old && new > 0:
 		sound_parent.play_hurt();
 
 
 ## Runs when this enemy's [member health] reaches 0.
 func _on_health_zero() -> void:
+	dead = true;
+	$Sprite.visible = false;
+	$Hitbox.queue_free();
+	
 	loot_dropper.try_drop();
+	
+	sound_parent.play_death();
+	await sound_parent.death.finished;
+	
 	queue_free();
 
